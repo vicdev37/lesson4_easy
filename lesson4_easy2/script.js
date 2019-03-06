@@ -68,15 +68,31 @@ let appData = {
 			}
 		}
 	},
+
+	// else {
+	// 	i = i - 1;
+	// }
 	chooseIncome: function() {
 		for (let i = 0; i < 1; i++) {
 			let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
-			if ((typeof (items)) === 'string' && (typeof (items)) != null && items != '') {
+			if ((typeof (items)) === 'string' && isNaN(+items) && items != null && items != '') {
 				appData.income = items.split(', ');
-				appData.income.push(prompt('Может что-то еще?'));
-				appData.income.sort();
-			}
+
+				
+				let j = 0;
+				while (j < 1) {
+					let more = prompt('Может что-то еще?');
+					if ((typeof (more)) === 'string' && isNaN(+more) && more != null && more != '') {
+						appData.income.push(more);
+						j++;
+					}
+				}
+				appData.income.sort();				
+			} else {
+				i = i - 1;
 		}
+}
+// (+items) перевели строку в число
 
 		let varrrr
 		console.log('appData.income', appData.income)
@@ -96,10 +112,10 @@ appData.chooseIncome();
 
 // console.log(arr);
 
-for (let key in appData) {
-	console.log('Наша программа ' + key + ' включает в себя данные ' + appData[key]);
+// for (let key in appData) {
+// 	console.log('Наша программа ' + key + ' включает в себя данные ' + appData[key]);
 
-}
+// }
 
 // for (let key in options) {
 // 	console.log('Свойство ' + key + ' имеет значение ' + options[key]);
